@@ -1,37 +1,31 @@
-
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Brain, Calendar, Sword as Knight, Crown as King, Star as Queen, Trophy } from "lucide-react";
 import { loadStripe } from "@stripe/stripe-js";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
+
+const STRIPE_PUBLISHABLE_KEY = 'pk_test_XXXXX'; // Replace with your Stripe publishable key
 
 const Index = () => {
   const handleSubscribe = async (priceId: 'monthly' | 'annual') => {
     try {
       toast.loading("Preparing checkout...");
-      const stripe = await loadStripe('YOUR_PUBLISHABLE_KEY'); // Replace with your Stripe publishable key
+      const stripe = await loadStripe(STRIPE_PUBLISHABLE_KEY);
       if (!stripe) {
         throw new Error('Stripe failed to initialize');
       }
 
-      // This should be replaced with your actual backend endpoint that creates a Stripe checkout session
-      const response = await fetch('/create-checkout-session', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          priceId,
-        }),
+      const { data, error } = await supabase.functions.invoke('create-checkout-session', {
+        body: { priceId },
       });
 
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
+      if (error) {
+        throw error;
       }
 
-      const session = await response.json();
       const result = await stripe.redirectToCheckout({
-        sessionId: session.id,
+        sessionId: data.id,
       });
 
       if (result.error) {
@@ -45,7 +39,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-chess-gray-100">
-      {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center chess-pattern">
         <div className="absolute inset-0 bg-gradient-to-b from-white/95 to-white/80" />
         <div className="container mx-auto px-4 z-10">
@@ -69,7 +62,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Features Section */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-16 text-chess-gray-800">
@@ -95,7 +87,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Pricing Section */}
       <section className="py-24 bg-chess-gray-100">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-16 text-chess-gray-800">
@@ -131,7 +122,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="bg-chess-black text-white py-12">
         <div className="container mx-auto px-4 text-center">
           <Queen className="w-8 h-8 mx-auto mb-4" />
