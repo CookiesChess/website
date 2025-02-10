@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Brain, Calendar, ChessKnight, King, Queen, Trophy } from "lucide-react";
+import { Brain, Calendar, ChessKnight as Knight, ChessKing as King, ChessQueen as Queen, Trophy } from "lucide-react";
 
 const Index = () => {
   return (
@@ -12,7 +12,7 @@ const Index = () => {
         <div className="container mx-auto px-4 z-10">
           <div className="text-center max-w-3xl mx-auto">
             <div className="animate-float">
-              <ChessKnight className="w-16 h-16 mx-auto mb-6 text-chess-black" />
+              <Knight className="w-16 h-16 mx-auto mb-6 text-chess-black" />
             </div>
             <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-chess-black to-chess-gray-700 bg-clip-text text-transparent">
               BnW Chess Training
