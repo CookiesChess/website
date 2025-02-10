@@ -126,12 +126,31 @@ const Index = () => {
       </section>
 
       <footer className="bg-cookie-secondary text-white py-12">
-        <div className="container mx-auto px-4 text-center">
-          <Cookie className="w-8 h-8 mx-auto mb-4" />
-          <p className="text-cookie-light">
-            © {new Date().getFullYear()} Cookies AI Training. All rights reserved.
-          </p>
-          <p className="text-sm mt-4 text-cookie-light/80">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+            <div>
+              <h3 className="font-cookie text-xl mb-4">Legal</h3>
+              <ul className="space-y-2">
+                <li><a href="/impressum" className="hover:text-cookie-light transition-colors">Impressum</a></li>
+                <li><a href="/agb" className="hover:text-cookie-light transition-colors">AGB</a></li>
+                <li><a href="/eula" className="hover:text-cookie-light transition-colors">EULA</a></li>
+                <li><a href="/privacy" className="hover:text-cookie-light transition-colors">Datenschutz</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-cookie text-xl mb-4">Contact</h3>
+              <p className="text-cookie-light">Email: contact@cookies-ai.com</p>
+            </div>
+            <div>
+              <h3 className="font-cookie text-xl mb-4">Follow Us</h3>
+              <p className="text-cookie-light">Coming soon</p>
+            </div>
+            <div>
+              <Cookie className="w-8 h-8 mx-auto mb-4" />
+              <p className="text-cookie-light">© {new Date().getFullYear()} Cookies AI Training</p>
+            </div>
+          </div>
+          <p className="text-sm text-center text-cookie-light/80">
             Cookie icon credit: Image by <a href="https://pixabay.com/users/diosk2k-9406755/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=6116766" className="underline">Diosk2k</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=6116766" className="underline">Pixabay</a>
           </p>
         </div>
