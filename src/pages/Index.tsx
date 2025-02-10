@@ -2,8 +2,47 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Brain, Calendar, Sword as Knight, Crown as King, Star as Queen, Trophy } from "lucide-react";
+import { loadStripe } from "@stripe/stripe-js";
+import { toast } from "sonner";
 
 const Index = () => {
+  const handleSubscribe = async (priceId: 'monthly' | 'annual') => {
+    try {
+      toast.loading("Preparing checkout...");
+      const stripe = await loadStripe('YOUR_PUBLISHABLE_KEY'); // Replace with your Stripe publishable key
+      if (!stripe) {
+        throw new Error('Stripe failed to initialize');
+      }
+
+      // This should be replaced with your actual backend endpoint that creates a Stripe checkout session
+      const response = await fetch('/create-checkout-session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          priceId,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const session = await response.json();
+      const result = await stripe.redirectToCheckout({
+        sessionId: session.id,
+      });
+
+      if (result.error) {
+        toast.error(result.error.message || 'Something went wrong');
+      }
+    } catch (error) {
+      toast.error('Failed to initiate checkout');
+      console.error('Error:', error);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-chess-gray-100">
       {/* Hero Section */}
@@ -20,7 +59,10 @@ const Index = () => {
             <p className="text-xl md:text-2xl text-chess-gray-600 mb-8">
               Your personal AI chess trainer, tailored to your unique playing style
             </p>
-            <Button className="bg-chess-black hover:bg-chess-gray-800 text-white px-8 py-6 rounded-lg text-lg transition-all duration-300 hover:scale-105">
+            <Button 
+              onClick={() => handleSubscribe('monthly')}
+              className="bg-chess-black hover:bg-chess-gray-800 text-white px-8 py-6 rounded-lg text-lg transition-all duration-300 hover:scale-105"
+            >
               Start Training Now
             </Button>
           </div>
@@ -70,6 +112,7 @@ const Index = () => {
                 "Daily tactics challenges",
                 "Game analysis",
               ]}
+              onSubscribe={() => handleSubscribe('monthly')}
             />
             <PricingCard
               title="Annual"
@@ -82,6 +125,7 @@ const Index = () => {
                 "Advanced statistics",
               ]}
               highlighted
+              onSubscribe={() => handleSubscribe('annual')}
             />
           </div>
         </div>
@@ -114,12 +158,14 @@ const PricingCard = ({
   period,
   features,
   highlighted = false,
+  onSubscribe,
 }: {
   title: string;
   price: string;
   period: string;
   features: string[];
   highlighted?: boolean;
+  onSubscribe: () => void;
 }) => (
   <Card
     className={`p-8 text-center transition-transform duration-300 hover:scale-105 ${
@@ -140,6 +186,7 @@ const PricingCard = ({
       ))}
     </ul>
     <Button
+      onClick={onSubscribe}
       className={`w-full ${
         highlighted
           ? "bg-chess-gold hover:bg-chess-gold/90 text-chess-black"
