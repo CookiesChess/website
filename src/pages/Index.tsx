@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Brain, Calendar, ChessKnight as Knight, ChessKing as King, ChessQueen as Queen, Trophy } from "lucide-react";
+import { Brain, Calendar, Sword as Knight, Crown as King, Star as Queen, Trophy } from "lucide-react";
 
 const Index = () => {
   return (
