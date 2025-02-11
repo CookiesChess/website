@@ -38,19 +38,30 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-cookie-light">
-      <section className="relative h-screen flex items-center justify-center chess-pattern">
-        <div className="absolute inset-0 bg-gradient-to-b from-white/95 to-white/80" />
-        <div className="container mx-auto px-4 z-10">
-          <div className="text-center max-w-3xl mx-auto">
-            <div className="animate-float">
+      {/* Navigation Bar */}
+      <nav className="bg-white shadow-sm">
+        <div className="container mx-auto px-4 py-3">
+          <div className="flex items-center">
+            <div className="flex items-center space-x-3">
               <img 
                 src="/lovable-uploads/4457da79-9e36-4e43-9771-485545ae9043.png" 
                 alt="Cookies Logo" 
-                className="w-24 h-24 mx-auto mb-6"
+                className="w-10 h-10"
               />
+              <span className="font-cookie text-2xl bg-gradient-to-r from-cookie-secondary to-cookie-accent bg-clip-text text-transparent">
+                Cookies AI Training
+              </span>
             </div>
+          </div>
+        </div>
+      </nav>
+
+      <section className="relative h-[calc(100vh-64px)] flex items-center justify-center chess-pattern">
+        <div className="absolute inset-0 bg-gradient-to-b from-white/95 to-white/80" />
+        <div className="container mx-auto px-4 z-10">
+          <div className="text-center max-w-3xl mx-auto">
             <h1 className="font-cookie text-6xl md:text-7xl mb-6 bg-gradient-to-r from-cookie-secondary to-cookie-accent bg-clip-text text-transparent">
-              Cookies AI Training
+              Transform Your Mind
             </h1>
             <p className="text-xl md:text-2xl text-cookie-dark mb-8">
               Your personal AI trainer, making you smarter one bite at a time
