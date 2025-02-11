@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Brain, Calendar, Cookie, Star, Trophy } from "lucide-react";
@@ -38,8 +37,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-cookie-light">
-      {/* Navigation Bar */}
-      <nav className="bg-white shadow-sm">
+      <nav className="bg-white shadow-sm fixed top-0 left-0 right-0 z-50">
         <div className="container mx-auto px-4 py-3">
           <div className="flex items-center">
             <div className="flex items-center space-x-3">
@@ -56,116 +54,118 @@ const Index = () => {
         </div>
       </nav>
 
-      <section className="relative h-[calc(100vh-64px)] flex items-center justify-center chess-pattern">
-        <div className="absolute inset-0 bg-gradient-to-b from-white/95 to-white/80" />
-        <div className="container mx-auto px-4 z-10">
-          <div className="text-center max-w-3xl mx-auto">
-            <h1 className="font-cookie text-6xl md:text-7xl mb-6 bg-gradient-to-r from-cookie-secondary to-cookie-accent bg-clip-text text-transparent">
-              Transform Your Mind
-            </h1>
-            <p className="text-xl md:text-2xl text-cookie-dark mb-8">
-              Your personal AI trainer, making you smarter one bite at a time
+      <div className="pt-16">
+        <section className="relative h-[calc(100vh-64px)] flex items-center justify-center chess-pattern">
+          <div className="absolute inset-0 bg-gradient-to-b from-white/95 to-white/80" />
+          <div className="container mx-auto px-4 z-10">
+            <div className="text-center max-w-3xl mx-auto">
+              <h1 className="font-cookie text-6xl md:text-7xl mb-6 bg-gradient-to-r from-cookie-secondary to-cookie-accent bg-clip-text text-transparent">
+                Transform Your Mind
+              </h1>
+              <p className="text-xl md:text-2xl text-cookie-dark mb-8">
+                Your personal AI trainer, making you smarter one bite at a time
+              </p>
+              <Button 
+                onClick={() => handleSubscribe('monthly')}
+                className="bg-cookie-primary hover:bg-cookie-accent text-white px-8 py-6 rounded-lg text-lg transition-all duration-300 hover:scale-105"
+              >
+                Start Training Now
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-24 bg-white">
+          <div className="container mx-auto px-4">
+            <h2 className="text-4xl font-cookie text-center mb-16 text-cookie-secondary">
+              Master Your Skills
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <FeatureCard
+                icon={<Star className="w-8 h-8" />}
+                title="Smart Learning"
+                description="Master concepts through AI-powered practice sessions"
+              />
+              <FeatureCard
+                icon={<Brain className="w-8 h-8" />}
+                title="Progress Analysis"
+                description="Deep analysis of your learning to identify patterns and improve weaknesses"
+              />
+              <FeatureCard
+                icon={<Calendar className="w-8 h-8" />}
+                title="Daily Practice"
+                description="Personalized daily exercises based on your learning history"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section className="py-24 bg-cookie-light">
+          <div className="container mx-auto px-4">
+            <h2 className="text-4xl font-cookie text-center mb-16 text-cookie-secondary">
+              Simple Pricing
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              <PricingCard
+                title="Monthly"
+                price="2.99"
+                period="month"
+                features={[
+                  "Full access to AI trainer",
+                  "Personalized learning path",
+                  "Daily challenges",
+                  "Progress tracking",
+                ]}
+                onSubscribe={() => handleSubscribe('monthly')}
+              />
+              <PricingCard
+                title="Annual"
+                price="30"
+                period="year"
+                features={[
+                  "Everything in monthly",
+                  "Save 16%",
+                  "Priority support",
+                  "Advanced statistics",
+                ]}
+                highlighted
+                onSubscribe={() => handleSubscribe('annual')}
+              />
+            </div>
+          </div>
+        </section>
+
+        <footer className="bg-cookie-secondary text-white py-12">
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+              <div>
+                <h3 className="font-cookie text-xl mb-4">Legal</h3>
+                <ul className="space-y-2">
+                  <li><a href="/impressum" className="hover:text-cookie-light transition-colors">Impressum</a></li>
+                  <li><a href="/agb" className="hover:text-cookie-light transition-colors">AGB</a></li>
+                  <li><a href="/eula" className="hover:text-cookie-light transition-colors">EULA</a></li>
+                  <li><a href="/privacy" className="hover:text-cookie-light transition-colors">Datenschutz</a></li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="font-cookie text-xl mb-4">Contact</h3>
+                <p className="text-cookie-light">Email: contact@cookies-ai.com</p>
+              </div>
+              <div>
+                <h3 className="font-cookie text-xl mb-4">Follow Us</h3>
+                <p className="text-cookie-light">Coming soon</p>
+              </div>
+              <div>
+                <Cookie className="w-8 h-8 mx-auto mb-4" />
+                <p className="text-cookie-light">© {new Date().getFullYear()} Cookies AI Training</p>
+              </div>
+            </div>
+            <p className="text-sm text-center text-cookie-light/80">
+              Cookie icon credit: Image by <a href="https://pixabay.com/users/diosk2k-9406755/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=6116766" className="underline">Diosk2k</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=6116766" className="underline">Pixabay</a>
             </p>
-            <Button 
-              onClick={() => handleSubscribe('monthly')}
-              className="bg-cookie-primary hover:bg-cookie-accent text-white px-8 py-6 rounded-lg text-lg transition-all duration-300 hover:scale-105"
-            >
-              Start Training Now
-            </Button>
           </div>
-        </div>
-      </section>
-
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-cookie text-center mb-16 text-cookie-secondary">
-            Master Your Skills
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <FeatureCard
-              icon={<Star className="w-8 h-8" />}
-              title="Smart Learning"
-              description="Master concepts through AI-powered practice sessions"
-            />
-            <FeatureCard
-              icon={<Brain className="w-8 h-8" />}
-              title="Progress Analysis"
-              description="Deep analysis of your learning to identify patterns and improve weaknesses"
-            />
-            <FeatureCard
-              icon={<Calendar className="w-8 h-8" />}
-              title="Daily Practice"
-              description="Personalized daily exercises based on your learning history"
-            />
-          </div>
-        </div>
-      </section>
-
-      <section className="py-24 bg-cookie-light">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-cookie text-center mb-16 text-cookie-secondary">
-            Simple Pricing
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <PricingCard
-              title="Monthly"
-              price="2.99"
-              period="month"
-              features={[
-                "Full access to AI trainer",
-                "Personalized learning path",
-                "Daily challenges",
-                "Progress tracking",
-              ]}
-              onSubscribe={() => handleSubscribe('monthly')}
-            />
-            <PricingCard
-              title="Annual"
-              price="30"
-              period="year"
-              features={[
-                "Everything in monthly",
-                "Save 16%",
-                "Priority support",
-                "Advanced statistics",
-              ]}
-              highlighted
-              onSubscribe={() => handleSubscribe('annual')}
-            />
-          </div>
-        </div>
-      </section>
-
-      <footer className="bg-cookie-secondary text-white py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-            <div>
-              <h3 className="font-cookie text-xl mb-4">Legal</h3>
-              <ul className="space-y-2">
-                <li><a href="/impressum" className="hover:text-cookie-light transition-colors">Impressum</a></li>
-                <li><a href="/agb" className="hover:text-cookie-light transition-colors">AGB</a></li>
-                <li><a href="/eula" className="hover:text-cookie-light transition-colors">EULA</a></li>
-                <li><a href="/privacy" className="hover:text-cookie-light transition-colors">Datenschutz</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-cookie text-xl mb-4">Contact</h3>
-              <p className="text-cookie-light">Email: contact@cookies-ai.com</p>
-            </div>
-            <div>
-              <h3 className="font-cookie text-xl mb-4">Follow Us</h3>
-              <p className="text-cookie-light">Coming soon</p>
-            </div>
-            <div>
-              <Cookie className="w-8 h-8 mx-auto mb-4" />
-              <p className="text-cookie-light">© {new Date().getFullYear()} Cookies AI Training</p>
-            </div>
-          </div>
-          <p className="text-sm text-center text-cookie-light/80">
-            Cookie icon credit: Image by <a href="https://pixabay.com/users/diosk2k-9406755/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=6116766" className="underline">Diosk2k</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=6116766" className="underline">Pixabay</a>
-          </p>
-        </div>
-      </footer>
+        </footer>
+      </div>
     </div>
   );
 };
