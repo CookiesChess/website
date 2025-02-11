@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Brain, Calendar, Cookie, Star, Trophy } from "lucide-react";
@@ -60,10 +61,10 @@ const Index = () => {
           <div className="container mx-auto px-4 z-10">
             <div className="text-center max-w-3xl mx-auto">
               <h1 className="font-cookie text-6xl md:text-7xl mb-6 bg-gradient-to-r from-cookie-secondary to-cookie-accent bg-clip-text text-transparent">
-                Transform Your Mind
+                Your personal chess trainer
               </h1>
               <p className="text-xl md:text-2xl text-cookie-dark mb-8">
-                Your personal AI trainer, making you smarter one bite at a time
+                Preparing you for your opponents one bite at a time
               </p>
               <Button 
                 onClick={() => handleSubscribe('monthly')}
