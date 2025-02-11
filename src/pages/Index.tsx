@@ -49,7 +49,7 @@ const Index = () => {
                 className="w-10 h-10"
               />
               <span className="font-cookie text-2xl bg-gradient-to-r from-cookie-secondary to-cookie-accent bg-clip-text text-transparent">
-                Cookies AI Training
+                Chess Cookies
               </span>
             </div>
           </div>
