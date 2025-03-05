@@ -109,7 +109,7 @@ const Index = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               <PricingCard
                 title="Monthly"
-                price="2.99"
+                price="9.99"
                 period="month"
                 features={[
                   "Full access to AI trainer",
@@ -121,7 +121,7 @@ const Index = () => {
               />
               <PricingCard
                 title="Annual"
-                price="30"
+                price="99.99"
                 period="year"
                 features={[
                   "Everything in monthly",
